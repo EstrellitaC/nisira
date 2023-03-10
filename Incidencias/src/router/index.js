@@ -27,8 +27,8 @@ const routes = [
     component: Home
   },
   {
-    path: '/Vip',
-    name: 'Vip',
+    path: '/Asignaciones',
+    name: 'Asignaciones',
     component: Vip
   },
   {

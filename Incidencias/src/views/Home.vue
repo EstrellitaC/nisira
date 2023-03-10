@@ -32,7 +32,7 @@
                 <img src="@/assets/vip2.jpg" alt="">
                 <h1>CLIENTES VIP</h1>
                 <p>Aquí encontraras las fechas pagadas de los clientes VIP</p>
-                <button class="ingresar1"><a href="/Vip">Ingresar</a></button>
+                <button class="ingresar1"><a href="/vips">Ingresar</a></button>
             </div>
 
             <div class="card card2">

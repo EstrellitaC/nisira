@@ -208,15 +208,15 @@ export default {
     justify-content: space-between;
     margin-bottom: 50px;
 }
+
+.botones button{
+    display: flex;
+    border: none;
+    border-radius: 10px;
+}
 .botones a{
     text-decoration: none;
     color: #000;
-}
-.botones button{
-    border: none;
-    border-radius: 10px;
-    height: 35px;
-    box-sizing: border-box;
 }
 .botones button:first-child{
     background-color: #FECA17;
@@ -227,10 +227,8 @@ export default {
 .botones button a{
     width: 100%;
     height: 100%;
-    padding: 5px 30px;
+
 }
-.modal-body{
-    
-}
+
 
 </style>

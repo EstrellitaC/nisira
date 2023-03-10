@@ -49,54 +49,58 @@
     </div>
     <div class="contenedor">
       <div class="header-contenedor">
-        <input class="input" type="text"  v-model="buscar" placeholder="Buscar" />
-        <div class="fechadescanso">
-          <input type="date" />
+        <input class="input" type="text"  v-model="buscar" placeholder="Buscar" @change=" buscarnombre()"/>
+        <div class="fechadescanso" >
+          <input type="date" v-model="fechainicio" @change=" buscarfecha()"/>
+          <input type="date" v-model="fechafin" @change=" buscarfecha()"/>
         </div>
+      </div>
+      <div class="btn_header">
+        <button><a href="/Asignaciones">Ir a tabla de asignaciones</a></button>
       </div>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Cliente Vip</th>
-            <th scope="col">Inicio</th>
-            <th scope="col">Fin</th>
+              <th scope="col">Usuario</th>
+              <th scope="col">Inicio</th>
+              <th scope="col">Fin</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(vip, indx) in vips" :key="indx">
-            <th scope="row">{{ vip.cnombre }}</th>
-            <th scope="row">{{ formatearfecha(vip.fecha_inicio) }}</th>
-            <th scope="row">{{ formatearfecha(vip.fecha_fin) }}</th>
+          <tr v-for="(vip, idx) in vips" :key="idx">
+              <th scope="row">{{ vip.cnombre }}</th>
+              <th scope="row">{{ formatearfecha(vip.fecha_inicio) }}</th>
+              <th scope="row">{{ formatearfecha(vip.fecha_fin) }}</th>
           </tr>
         </tbody>
       </table>
-      <div class="footer-contenedor">
-        <button><a href="/vip">Ir a la tabla de asignaciones</a></button>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import moment from "moment"
 
 export default {
   data() {
     return {
       vips: [],
       buscar: "",
+      fechainicio:moment().format("YYYY/MM/DD"),
+      fechafin:moment().format("YYYY/MM/DD"),
     };
   },
   mounted() {
     this.traervips();
   },
 
-  watch: {
-    buscar(nombre) {
-      console.log("Nombres", nombre);
-      this.vips=this.vips.filter(vip=>vip.nombre=nombre)
-    },
-  },
+  // watch: {
+  //   buscar(cnombre) {
+  //     console.log("Nombres", cnombre);
+  //     this.vips=this.vips.filter(vip=>vip.cnombre=cnombre)
+  //   },
+  // },
 
   methods: {
     async traervips() {
@@ -107,6 +111,21 @@ export default {
     formatearfecha(fecha) {
       return fecha.slice(0, -19);
     },
+    async buscarnombre() {
+        console.log("Mensaje", this.buscar)
+        const data = await axios.get(`http://localhost:8089/api/v1/vips`,{params:{nombre:this.buscar}})
+        this.vips = data.data
+        console.log (this.vips)
+        console.log (data)
+    },
+    async buscarfecha() {
+        console.log("Mensaje", this.fechainicio)
+        console.log("Mensaje", this.fechafin)
+        const data = await axios.get(`http://localhost:8089/api/v1/vips`,{params:{fechainicio:this.fechainicio,fechafin:this.fechafin}})
+        this.vips = data.data
+        console.log (this.vips)
+        console.log (data)
+    }
   },
 };
 </script>
@@ -191,18 +210,20 @@ export default {
   border-radius: 15px;
   padding: 0 10px;
 }
-.footer-contenedor {
+.btn_header{
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+  margin-top: 20px;
 }
-button {
-  background-color: rgb(255, 192, 103);
-  border: none;
-  border-radius: 20px;
-  padding: 10px;
+.btn_header button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+
 }
-button a {
+.btn_header a {
   text-decoration: none;
-  color: #fff;
+  color: #000000;
 }
 </style>

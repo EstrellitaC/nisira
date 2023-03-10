@@ -86,7 +86,7 @@
             </table>
 
             <div class="footer_btn">
-                <button><a href="/vip">Grabar</a></button>
+                <button><a href="/Asignaciones">Grabar</a></button>
             </div>
         </div>
     </div>
