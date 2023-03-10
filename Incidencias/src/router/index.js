@@ -3,9 +3,10 @@ import VueRouter from 'vue-router'
 import Registro from '../views/Registro.vue'
 import Login from '../views/Login.vue'
 import Home from '../views/Home.vue'
-import Vip from '../views/Vip.vue'
+import Vip from '../views/Asignaciones.vue'
 import Clientes from '../views/Clientes.vue'
 import Descanso from '../views/Descansos.vue'
+import Vips from '../views/Vips.vue'
 
 Vue.use(VueRouter)
 
@@ -39,7 +40,12 @@ const routes = [
     path: '/descanso',
     name: 'descanso',
     component: Descanso
-  }
+  },
+  {
+    path: '/Vips',
+    name: 'Vips',
+    component: Vips
+  },
   
 ]
 

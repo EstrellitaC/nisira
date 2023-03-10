@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="titulo">
-            <h1>Programación VIP</h1>
+            <h1>Asignación VIP</h1>
         </div>
 
 
