@@ -51,8 +51,8 @@
       <div class="header-contenedor">
         <input class="input" type="text"  v-model="buscar" placeholder="Buscar" @change=" buscarnombre()"/>
         <div class="fechadescanso" >
-          <input type="date" v-model="fechainicio" @change=" buscarfecha()"/>
-          <input type="date" v-model="fechafin" @change=" buscarfecha()"/>
+          <input type="date" v-model="fechaInicio" @change=" buscarfecha()"/>
+          <input type="date" v-model="fechaFin" @change=" buscarfecha()"/>
         </div>
       </div>
       <table class="table">
@@ -94,8 +94,8 @@ export default {
     return {
       vips: [],
       buscar: "",
-      fechainicio:moment().format("YYYY/MM/DD"),
-      fechafin:moment().format("YYYY/MM/DD"),
+      fechaInicio:moment().format("YYYY/MM/DD"),
+      fechaFin:moment().format("YYYY/MM/DD"),
     };
   },
   mounted() {
@@ -126,9 +126,9 @@ export default {
         console.log (data)
     },
     async buscarfecha() {
-        console.log("Mensaje", this.fechainicio)
-        console.log("Mensaje", this.fechafin)
-        const data = await axios.get(`http://localhost:8089/api/v1/vacaciones`,{params:{fechainicio:this.fechainicio,fechafin:this.fechafin}})
+        console.log("Mensaje", this.fechaInicio)
+        console.log("Mensaje", this.fechaFin)
+        const data = await axios.get(`http://localhost:8089/api/v1/vacaciones`,{params:{fechaInicio:this.fechaInicio,fechaFin:this.fechaFin}})
         this.vips = data.data
         console.log (this.vips)
         console.log (data)
